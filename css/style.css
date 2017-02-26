@@ -34,6 +34,7 @@ ul {
   border-radius: 15px;
   background-color: orange;
   padding: 0 10px;
+  margin: 0 0 20%;
 }
 
 li {
@@ -103,7 +104,7 @@ img.corner {
 
 /*.panel ul { transform: translateY(-100%);}
 .panel.open-active ul { transform: translateY(0);}*/
-.panel ul { transform: translateY(130%);}
+.panel ul { transform: translateY(200%);}
 .panel.open-active ul { transform: translateY(0);}
 
 .panel p {
