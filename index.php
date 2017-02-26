@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>The News Stand</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php
+/**
+ * index.php is the home page for ITC150 project 3 group 5.
+ * This page acts as a switch to further define what subject to read about
+ *
+ * @package nmCommon
+ * @author Group 5 - Aaron: github -> aebrown9
+ * @version 1 2/28/17
+ * @link http://www.brownae.com/
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
+ * @see header_inc.php
+ * @see footer_inc.php
+ * @todo Link to database and loop through options.
+ */
+
+ include 'includes/header.php';
+ ?>
 
   <div class="banner">
     <img class="corner" src="images/corner-triangle-news.png" alt="News">
@@ -37,7 +46,4 @@
     </div>
 
   </div>
-
-<script src="js/script.js" charset="utf-8"></script>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
