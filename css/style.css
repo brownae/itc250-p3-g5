@@ -104,7 +104,7 @@ img.corner {
 
 /*.panel ul { transform: translateY(-100%);}
 .panel.open-active ul { transform: translateY(0);}*/
-.panel ul { transform: translateY(200%);}
+.panel ul { transform: translateY(300%);}
 .panel.open-active ul { transform: translateY(0);}
 
 .panel p {
@@ -115,7 +115,7 @@ img.corner {
 }
 .panel p {
   font-size: 3em;
-transform: translateY(-10%);
+  transform: translateY(-10%);
 }
 
 .panel.open {
