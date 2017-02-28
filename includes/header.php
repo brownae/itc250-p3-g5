@@ -4,6 +4,6 @@
   <meta charset="UTF-8">
   <title>The News Stand</title>
   <link rel="stylesheet" href="css/style.css">
-  
+
 </head>
 <body>

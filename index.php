@@ -16,20 +16,21 @@
  include 'includes/header.php';
  ?>
 
-  <div class="banner">
+  <div class="banner" id="index">
     <img class="corner" src="images/corner-triangle-news.png" alt="News">
+    <h1>News Stand</h1>
   </div>
   <div class="panels">
     <div class="panel panel1">
-      <p>Tech</p>
+      <h2>Tech</h2>
       <ul>
-        <li><a href="#">Companies</a></li>
+        <li><a href="list.php?companies">Companies</a></li>
         <li><a href="#">New Gadgets</a></li>
         <li><a href="#">New Discoveries</a></li>
       </ul>
     </div>
     <div class="panel panel2">
-      <p>Sports</p>
+      <h2>Sports</h2>
       <ul>
         <li><a href="#">Running </a></li>
         <li><a href="#">Jumping</a></li>
@@ -37,7 +38,7 @@
       </ul>
     </div>
     <div class="panel panel3">
-      <p>Art</p>
+      <h2>Art</h2>
       <ul>
         <li><a href="#">Finger Painting</a></li>
         <li><a href="#">Singing</a></li>
