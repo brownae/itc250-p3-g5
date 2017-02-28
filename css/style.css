@@ -7,9 +7,11 @@ html {
   font-size: 20px;
   font-weight: 700;
 }
+
 body {
   margin: 0;
 }
+/*index page styles START---------------------------------------------*/
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -24,9 +26,14 @@ a:hover {
 }
 
 h1 {
-  color: #FFF;
+  display: none;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-family: 'Barrio', cursive;
+  font-size: 2em;
   text-align: center;
-  font-size: 1em;
 }
 
 ul {
@@ -92,7 +99,7 @@ img.corner {
 .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
 
 /*flex items*/
-.panel > p {
+.panel > h2 {
   margin:0;
   width: 100%;
   transition:transform 0.5s;
@@ -107,13 +114,13 @@ img.corner {
 .panel ul { transform: translateY(300%);}
 .panel.open-active ul { transform: translateY(0);}
 
-.panel p {
+.panel h2 {
   text-transform: uppercase;
   font-family: 'Barrio', cursive;
   text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
   font-size: 2em;
 }
-.panel p {
+.panel h2 {
   font-size: 3em;
   transform: translateY(-10%);
 }
@@ -122,6 +129,18 @@ img.corner {
   flex: 5;
   font-size:40px;
 }
+/*index page styles END---------------------------------------------*/
+
+/*LIST page styles START---------------------------------------------*/
+#list-page h2 {
+  margin-top: 25px;
+}
+
+
+/*LIST page styles END---------------------------------------------*/
+
+
+
 
 .cta {
   color:white;
