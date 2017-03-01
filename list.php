@@ -1,6 +1,6 @@
 <?php
 /**
- * index.php is the home page for ITC150 project 3 group 5.
+ * list.php THIS PAGE IS ON HOLD - Aaron 
  * This page acts as a switch to further define what subject to read about
  *
  * @package nmCommon?
@@ -15,15 +15,21 @@
 
  include 'includes/header.php';
  ?>
+
+ <div class="banner">
+   <a href='index.php'><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
+ <h1>News Stand</h1>
+ </div>
+
 <div id="list-page"><!-- enables styles for list page -->
 
-<h3>Tech</h3>
+<a href="index.php"><h3>Tech</h3></a>
 <div class="panel panel1">
   <h2>Companies</h2>
   <ul>
-    <li><a href="list.php?companies">Companies</a></li>
-    <li><a href="#">New Gadgets</a></li>
-    <li><a href="#">New Discoveries</a></li>
+    <li><a href="list.php?companies">Google</a></li>
+    <li><a href="#">Apple</a></li>
+    <li><a href="#">Microsoft</a></li>
   </ul>
 </div>
 
