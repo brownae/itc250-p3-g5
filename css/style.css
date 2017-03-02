@@ -52,8 +52,11 @@ li {
 }
 
 img.corner {
-  position: fixed;
+  position: absolute;
   width: 20%;
+  z-index: 1;
+  top: 0;
+
 }
 /*.banner {
   background-color: #FF612F;

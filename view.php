@@ -1,5 +1,6 @@
 <?php include 'includes/header.php'; ?>
 
-<h1>Test view.php</h1>
+<h3>Test view.php</h3>
+
 
 <?php include 'includes/footer.php'; ?>
