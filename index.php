@@ -25,24 +25,24 @@
       <h2>Tech</h2>
       <ul>
         <li><a href="view.php?companies">Companies</a></li>
-        <li><a href="#">New Gadgets</a></li>
-        <li><a href="#">New Discoveries</a></li>
+        <li><a href="#">Discoveries</a></li>
+        <li><a href="#">Gadgets</a></li>
       </ul>
     </div>
     <div class="panel panel2">
       <h2>Sports</h2>
       <ul>
-        <li><a href="#">Running </a></li>
-        <li><a href="#">Jumping</a></li>
-        <li><a href="#">Swimming</a></li>
+        <li><a href="#">Climbing</a></li>
+        <li><a href="#">Cycling</a></li>
+        <li><a href="#">Running</a></li>
       </ul>
     </div>
     <div class="panel panel3">
       <h2>Art</h2>
       <ul>
-        <li><a href="#">Finger Painting</a></li>
-        <li><a href="#">Singing</a></li>
-        <li><a href="#">Interpretive Dance</a></li>
+        <li><a href="#">Dance</a></li>
+        <li><a href="#">Painting</a></li>
+        <li><a href="#">Sculpture</a></li>
       </ul>
     </div>
 
