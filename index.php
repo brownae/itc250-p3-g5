@@ -14,10 +14,28 @@
  */
 
  include 'includes/header.php';
- ?>
+ include'includes/config.php';
 
+  $sql = '
+    SELECT c.CategoryID, f.Subject Feed_Name, c.Subject Category_Name, FeedID
+    FROM NEWS_Feed f
+    JOIN NEWS_Category c
+    ON f.CategoryID = c.CategoryID
+    ORDER BY c.Subject;
+  ';//CLose sql query
+
+  $db = db_conn();              //Make db connection
+  $sql = $db->prepare($sql);    //Prepare SQL statement
+  $sql->execute();              //Execute SQL
+  $results = $sql->fetchAll();  //Store results
+  $sql->closeCursor();          //Close the connection for safety
+
+
+  var_dump($results);
+
+ echo '
   <div class="banner" id="index">
-    <a href='index.php'><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
+    <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
   <h1>News Stand</h1>
   </div>
   <div class="panels">
@@ -47,4 +65,7 @@
     </div>
 
   </div>
-<?php include 'includes/footer.php'; ?>
+
+  ';//end echo
+
+include 'includes/footer.php';
