@@ -15,7 +15,7 @@
 include 'includes/header.php';
 include'includes/config.php';
 
-echo '<h3>Test view.php</h3>';
+
 
 $id = $_GET['id'];
 
@@ -36,6 +36,17 @@ $sql->closeCursor();          //Close the connection for safety
 $subject = $results[0][1];
 $subject = strtolower($subject);
 
+echo '<div class="banner" id="index">
+      <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
+      <h1>News Stand</h1>
+      </div>
+      <div class="view">';
+
+
+echo "<h2>" . $results[0]['Subject'] . "</h2>";
+// echo "<h3>" . $results[0]['Description'] . "</h3>";
+
+
 // echo "<pre>";
 // var_dump($subject);
 // echo "</pre>";
@@ -44,11 +55,13 @@ $subject = strtolower($subject);
 $request = 'http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q='.$subject. '&output=rss';
 $response = file_get_contents($request);
 $xml = simplexml_load_string($response);
-print '<h1>' . $xml->channel->title . '</h1>';
+print '<h3>' . $xml->channel->title . '</h3>';
 foreach($xml->channel->item as $story)
 {
-  echo '<a href="' . $story->link . '">' . $story->title . '</a><br />';
+  echo '<a class="source" href="' . $story->link . '">' . $story->title . '</a><br />';
   echo '<p>' . $story->description . '</p><br /><br />';
 }
+
+echo '</div>';
 
 include 'includes/footer.php';
