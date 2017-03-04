@@ -30,42 +30,64 @@
   $results = $sql->fetchAll();  //Store results
   $sql->closeCursor();          //Close the connection for safety
 
+  // echo "<pre>";
+  // var_dump($results);
+  // echo "</pre>";
+  // die();
 
-  var_dump($results);
-
- echo '
-  <div class="banner" id="index">
-    <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
-  <h1>News Stand</h1>
-  </div>
-  <div class="panels">
-    <div class="panel panel1">
-      <h2>Tech</h2>
-      <ul>
-        <li><a href="view.php?companies">Companies</a></li>
-        <li><a href="#">Discoveries</a></li>
-        <li><a href="#">Gadgets</a></li>
-      </ul>
+   echo '
+    <div class="banner" id="index">
+      <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
+    <h1>News Stand</h1>
     </div>
-    <div class="panel panel2">
-      <h2>Sports</h2>
-      <ul>
-        <li><a href="#">Climbing</a></li>
-        <li><a href="#">Cycling</a></li>
-        <li><a href="#">Running</a></li>
-      </ul>
-    </div>
-    <div class="panel panel3">
-      <h2>Art</h2>
-      <ul>
-        <li><a href="#">Dance</a></li>
-        <li><a href="#">Painting</a></li>
-        <li><a href="#">Sculpture</a></li>
-      </ul>
-    </div>
+    <div class="panels">';
 
-  </div>
+    //Foreach loop to populate the list from the database.
+    $i = 0;
+    $panel = 1;
+    //Loop through all entries
+    while($i < count($results)) {
 
-  ';//end echo
+        $category = $results[$i]['Category_Name'];
+        //Echo Div and h2 tag
+        echo '  <div class="panel panel' .  $panel . '">
+                    <h2>' . $category . '</h2>
+                    <ul>
+                ';
+
+        //Loop for various feeds.
+        while ($category == $results[$i]['Category_Name']) {
+
+            echo'<li><a href="./view.php?id=' . $results[$i]['FeedID'] . '">' . $results[$i]['Feed_Name'] . '</a></li>';
+             //Feed + FeedID
+            $i++;
+        }
+        echo '</ul>
+                </div>';
+        //$i++;
+        $panel++;
+    }
+
+    echo '</div>';
+
+
+
+     //
+    //       foreach ($results as $key => $value) {
+    //         // if($key == 'CategoryID'){
+    //         echo '<div class="panel panel' . $key['CategoryID'] . '">
+    //         <h2>' . $key['Category_Name'] . '</h2>
+     //
+    //         <ul>
+    //           <li><a href="view.php?companies">Companies</a></li>
+    //           <li><a href="#">Discoveries</a></li>
+    //           <li><a href="#">Gadgets</a></li>
+    //         </ul>
+    //         </div>';
+    //         // }
+    //       }
+    //  //
+    //   echo '</div>';
+
 
 include 'includes/footer.php';
