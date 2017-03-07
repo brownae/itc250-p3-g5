@@ -39,7 +39,7 @@ $last_update_time = strtotime($feed['LastUpdated']);
 $age = $now - $last_update_time;
 echo "Last download was " . $age . " seconds ago. <br>";
 
-if ($age > 15x60) {
+if ($age > 15*60) {
     // If the saved feed is more than 15 minutes old, download it from Google
     // and write it to the database.
     $subject = str_replace(' ', '+', $feed['Subject']);
