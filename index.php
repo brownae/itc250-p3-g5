@@ -13,8 +13,8 @@
  * @todo Link to database and loop through options.
  */
 
-include 'includes/header.php';
-require 'includes/config_0700.php';
+include './includes/header.php';
+require './includes/config.php';
 
 //Set SQL statement
 $sql = 'SELECT c.CategoryID, f.Subject Feed_Name, c.Subject Category_Name, FeedID
@@ -70,18 +70,17 @@ array(9) { [0]=> array(8) {
                     <h2>' . $category . '</h2>
                     <ul>
                 ';
-//        echo'<li><a href="./view.php?id=' . $results[$i]['FeedID'] . '">' . $results[$i]['Feed_Name'] . '</a></li>';
         
         //Loop for various feeds.
         while ($category == $results[$i]['Category_Name']) {
-            $i++;
+            
             echo'<li><a href="./view.php?id=' . $results[$i]['FeedID'] . '">' . $results[$i]['Feed_Name'] . '</a></li>';
              //Feed + FeedID 
-            
+            $i++;
         }
         echo '</ul>
                 </div>';
-        $i++;
+        //$i++;
         $panel++;
     }
 ?>
