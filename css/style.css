@@ -11,6 +11,11 @@ html {
 body {
   margin: 0;
 }
+
+.right {
+  float: right;
+  margin-right: 3%;
+}
 /*index page styles START---------------------------------------------*/
 *, *:before, *:after {
   box-sizing: inherit;
@@ -40,6 +45,7 @@ h3 {
   text-transform: uppercase;
   font-size: 2em;
   text-align: center;
+  clear: right;
 }
 
 h4 {

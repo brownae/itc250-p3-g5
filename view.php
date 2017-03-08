@@ -114,12 +114,13 @@ if(!isset($_SESSION['news'][$id])){
 
 
 // $now = time(); // Checking the time now when home page starts.
-// if ($now > $_SESSION['sessionExpire']) {
+// if ($now > $_SESSION['news']['TimeCreated']+(15*60)) {
 // 					 session_destroy();
 // 					 echo "Your session has expired! <a href='http://localhost/somefolder/login.php'>Login here</a>";
 // 			 }
 
 
+echo '<p class="right">News Cached at:'.date('h:i:s Y-m-d',$news->TimeCreated).'</p>';
 
 $xml = simplexml_load_string($news->FeedXML);
 print '<h3>' . $xml->channel->title . '</h3>';
