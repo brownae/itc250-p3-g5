@@ -14,6 +14,42 @@
  */
 include 'includes/header.php';
 include'includes/config.php';
+// include'NewsStand/RssNews.php';
+
+class RssNews
+{
+	 public $NewsID = 0;
+	 public $FeedXML = "";
+	 public $TimeCreated = 0;
+
+	/**
+	 * Constructor for Answer class.
+	 *
+	 * @param integer $NewsID ID number of news feed
+	 * @param integer $TimeCreated The current time Created of the answer
+	 * @param string $Description Additional description info
+	 * @return void
+	 * @todo none
+	 */
+    function __construct($NewsId,$FeedXml,$Time)
+	{#constructor sets stage by adding data to an instance of the object
+		$this->NewsID = (int)$NewsId;
+		$this->FeedXML = $FeedXml;
+		$this->TimeCreated = $Time;
+	}#end RssNews() constructor
+}#end RssNews class
+
+// $testID = 5;
+// $testFeed = "XML content";
+// $now = time();
+
+// $news = new RssNews($testID,$testFeed,$now);
+//
+// var_dump($news);
+// die;
+
+
+ $now = time();//current time
 
 
 
@@ -46,15 +82,48 @@ echo '<div class="banner" id="index">
 echo "<h2>" . $results[0]['Subject'] . "</h2>";
 // echo "<h3>" . $results[0]['Description'] . "</h3>";
 
+//Make class that creates object to hold ID, timestamp, xml
+//create session function if !set then set. if set and older than 15 minutes, then stop and start again
+//
+if(!isset($_SESSION)){
+	session_start();
+ // $_SESSION['sesstionStart'] = $now;
+ // $_SESSION['sessionExpire'] =  $_SESSION['sesstionStart'] + (10 * 60);
+}
 
-// echo "<pre>";
-// var_dump($subject);
-// echo "</pre>";
-// die();
+//if session "news" with X id doesn't exist then create it.
+if(!isset($_SESSION['news'][$rssNews][$id])){
+	//go to url
+	$request = 'http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q='.$subject. '&output=rss';
+	//get info from url and store
+	$response = file_get_contents($request);
 
-$request = 'http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q='.$subject. '&output=rss';
-$response = file_get_contents($request);
-$xml = simplexml_load_string($response);
+	//create object and store in an array
+	$rssNews[] = new RssNews($id,$response,$now);
+	//store that array in Session cache
+	$_SESSION['news'] = $rssNews;
+
+	echo "<pre>";
+	var_dump($rssNews);
+	echo "</pre>";
+	die();
+}
+
+
+	//$rssNews = $_SESSION['news']->rssNews[$id];
+
+
+
+
+// $now = time(); // Checking the time now when home page starts.
+// if ($now > $_SESSION['sessionExpire']) {
+// 					 session_destroy();
+// 					 echo "Your session has expired! <a href='http://localhost/somefolder/login.php'>Login here</a>";
+// 			 }
+
+
+
+$xml = simplexml_load_string($rssNews->FeedXML);
 print '<h3>' . $xml->channel->title . '</h3>';
 foreach($xml->channel->item as $story)
 {
