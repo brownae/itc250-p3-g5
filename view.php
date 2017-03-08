@@ -49,7 +49,7 @@ class RssNews
 // die;
 
 
- $now = time();//current time
+$now = time();//current time
 
 
 
@@ -72,11 +72,11 @@ $sql->closeCursor();          //Close the connection for safety
 $subject = $results[0][1];
 $subject = strtolower($subject);
 
-echo '<div class="banner" id="index">
-      <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
-      <h1>News Stand</h1>
-      </div>
-      <div class="view">';
+// echo '<div class="banner" id="index">
+//       <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
+//       <h1>News Stand</h1>
+//       </div>
+//       <div class="view">';
 
 
 echo "<h2>" . $results[0]['Subject'] . "</h2>";
@@ -85,34 +85,32 @@ echo "<h2>" . $results[0]['Subject'] . "</h2>";
 //Make class that creates object to hold ID, timestamp, xml
 //create session function if !set then set. if set and older than 15 minutes, then stop and start again
 //
-if(!isset($_SESSION)){
-	session_start();
- // $_SESSION['sesstionStart'] = $now;
- // $_SESSION['sessionExpire'] =  $_SESSION['sesstionStart'] + (10 * 60);
-}
+
 
 //if session "news" with X id doesn't exist then create it.
-if(!isset($_SESSION['news'][$rssNews][$id])){
+if(!isset($_SESSION['news'][$id])){
 	//go to url
 	$request = 'http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q='.$subject. '&output=rss';
 	//get info from url and store
 	$response = file_get_contents($request);
 
 	//create object and store in an array
-	$rssNews[] = new RssNews($id,$response,$now);
+	// $rssNews[] = new RssNews($id,$response,$now);
 	//store that array in Session cache
-	$_SESSION['news'] = $rssNews;
-
-	echo "<pre>";
-	var_dump($rssNews);
-	echo "</pre>";
-	die();
+	$_SESSION['news'][$id] = new RssNews($id,$response,$now);
 }
 
 
-	//$rssNews = $_SESSION['news']->rssNews[$id];
+	$news = $_SESSION['news'][$id];
 
-
+	// echo "<pre>";
+	// var_dump($_SESSION);
+	// echo "</pre>";
+	//
+	// echo "<pre>";
+	// var_dump($news);
+	// echo "</pre>";
+	// die();
 
 
 // $now = time(); // Checking the time now when home page starts.
@@ -123,7 +121,7 @@ if(!isset($_SESSION['news'][$rssNews][$id])){
 
 
 
-$xml = simplexml_load_string($rssNews->FeedXML);
+$xml = simplexml_load_string($news->FeedXML);
 print '<h3>' . $xml->channel->title . '</h3>';
 foreach($xml->channel->item as $story)
 {

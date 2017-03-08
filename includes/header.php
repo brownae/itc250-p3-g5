@@ -1,3 +1,9 @@
+<?php if(!isset($_SESSION)){
+	session_start();
+ // $_SESSION['sesstionStart'] = $now;
+ // $_SESSION['sessionExpire'] =  $_SESSION['sesstionStart'] + (10 * 60);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
