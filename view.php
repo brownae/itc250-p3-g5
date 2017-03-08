@@ -43,7 +43,11 @@ if ($age > 15*60) {
     // If the saved feed is more than 15 minutes old, download it from Google
     // and write it to the database.
     $subject = str_replace(' ', '+', $feed['Subject']);
-    $url = 'https://news.google.com/news?cf=all&hl=en&pz=1&ned=' . $subject  . '&output=rss';
+    $url = 'http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=' . $subject  . '&output=rss';
+    $response = file_get_contents($url);
+    
+    
+    
     echo "Cache is too old, downloading from " . $url . '<br>';
     $rss_feed = file_get_contents($url) . "<br>";
 
@@ -61,7 +65,15 @@ if ($age > 15*60) {
     $rss_feed = $feed['SavedFeed'];
 }
 
+
+
+
+  
+// echo $rss_feed;
+$rss_feed = html_entity_decode($rss_feed);
+$rss_feed = stripslashes($rss_feed);
 echo $rss_feed;
+die;
 
 
 
