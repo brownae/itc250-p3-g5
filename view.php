@@ -77,11 +77,11 @@ $subject = strtolower($subject);
 $subject = str_replace(' ', '+', $subject);
 
 //THIS IS THE CORNER "NEWS" IMAGE THAT RETURNS YOU TO HOME PAGE.
-// echo '<div class="banner" id="index">
-//       <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
-//       <h1>News Stand</h1>
-//       </div>
-//       <div class="view">';
+echo '<div class="banner" id="index">
+      <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
+      <h1>News Stand</h1>
+      </div>
+      <div class="view">';
 
 
 echo "<h2>" . $results[0]['Subject'] . "</h2>";
@@ -115,12 +115,6 @@ if(!isset($_SESSION['news'][$id]) || $now > $_SESSION['news'][$id]->Expire){
 	// echo "</pre>";
 	// die();
 
-//CODE SNIPPET FOR REFERENCE ONLY
-// $now = time(); // Checking the time now when home page starts.
-// if ($now > $_SESSION['news']['TimeCreated']+(15*60)) {
-// 					 session_destroy();
-// 					 echo "Your session has expired! <a href='http://localhost/somefolder/login.php'>Login here</a>";
-// 			 } //CODE SNIPPET FOR REFERENCE ONLY - END
 
 //Echo the time that this feed was cashed at
 echo '<p class="right">News Cached at:'.date('h:i:s Y-m-d',$news->TimeCreated).'</p>';
