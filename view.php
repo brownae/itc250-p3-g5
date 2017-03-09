@@ -60,7 +60,7 @@ $id = $_GET['id'];
 
 $sql = "
   SELECT FeedID, Subject, Description
-  FROM NEWS_Feed
+  FROM Feed
   WHERE FeedID = ".$id.";
 ";//CLose sql query
 

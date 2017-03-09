@@ -18,8 +18,8 @@
 
   $sql = '
     SELECT c.CategoryID, f.Subject Feed_Name, c.Subject Category_Name, FeedID
-    FROM NEWS_Feed f
-    JOIN NEWS_Category c
+    FROM Feed f
+    JOIN Category c
     ON f.CategoryID = c.CategoryID
     ORDER BY c.Subject;
   ';//CLose sql query
