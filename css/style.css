@@ -16,6 +16,23 @@ body {
   float: right;
   margin-right: 3%;
 }
+
+#dialog {
+  display: none;
+  text-align: center;
+}
+
+#dialog p {
+  font-size: 40px;
+}
+
+
+/*This makes widget button for pop-up bigger*/
+button.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  width: 50px;
+  height: 30px;
+}
+
 /*index page styles START---------------------------------------------*/
 *, *:before, *:after {
   box-sizing: inherit;

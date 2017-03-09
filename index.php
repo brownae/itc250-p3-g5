@@ -15,6 +15,13 @@
 
  include 'includes/header.php';
  include'includes/config.php';
+echo '
+  <!-- This is the alert that prompts mobile devices to use landscape mode -->
+  <div id="dialog" title="Basic dialog">
+  <p>This page is best <br>veiwed in landscape</p>
+  <img src="images/icon-horizontal.png" alt="Best viewed in landscape view" />
+
+  </div>';
 
   $sql = '
     SELECT c.CategoryID, f.Subject Feed_Name, c.Subject Category_Name, FeedID
