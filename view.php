@@ -13,7 +13,7 @@
  * @todo Link to database and loop through options.
  */
 include 'includes/header.php';
-include'includes/config.php';
+include 'includes/config.php';
 // include'NewsStand/RssNews.php';
 
 class RssNews
@@ -21,21 +21,24 @@ class RssNews
 	 public $NewsID = 0;
 	 public $FeedXML = "";
 	 public $TimeCreated = 0;
+	 public $Expire = 0;
 
 	/**
 	 * Constructor for Answer class.
 	 *
 	 * @param integer $NewsID ID number of news feed
-	 * @param integer $TimeCreated The current time Created of the answer
 	 * @param string $Description Additional description info
+	 * @param integer $TimeCreated The current time Created of the answer
+	 * @param integer $Expire The current time Created of the answer
 	 * @return void
 	 * @todo none
 	 */
-    function __construct($NewsId,$FeedXml,$Time)
+    function __construct($NewsId,$FeedXml,$Time,$Expire)
 	{#constructor sets stage by adding data to an instance of the object
 		$this->NewsID = (int)$NewsId;
 		$this->FeedXML = $FeedXml;
 		$this->TimeCreated = $Time;
+		$this->Expire = $Expire;
 	}#end RssNews() constructor
 }#end RssNews class
 
@@ -50,7 +53,7 @@ class RssNews
 
 
 $now = time();//current time
-
+$expire = time() + (2 * 60);
 
 
 $id = $_GET['id'];
@@ -71,7 +74,9 @@ $sql->closeCursor();          //Close the connection for safety
 
 $subject = $results[0][1];
 $subject = strtolower($subject);
+$subject = str_replace(' ', '+', $subject);
 
+//THIS IS THE CORNER "NEWS" IMAGE THAT RETURNS YOU TO HOME PAGE.
 // echo '<div class="banner" id="index">
 //       <a href="index.php"><img class="corner" src="images/corner-triangle-news.png" alt="News"></a>
 //       <h1>News Stand</h1>
@@ -82,25 +87,23 @@ $subject = strtolower($subject);
 echo "<h2>" . $results[0]['Subject'] . "</h2>";
 // echo "<h3>" . $results[0]['Description'] . "</h3>";
 
-//Make class that creates object to hold ID, timestamp, xml
-//create session function if !set then set. if set and older than 15 minutes, then stop and start again
+//TO DO LIST
+//Make class that creates object to hold ID, xml, timestamp, exp time
+//create session function if !set then set. if set and older than 15 minutes, then re-assign var to current info.
 //
 
 
 //if session "news" with X id doesn't exist then create it.
-if(!isset($_SESSION['news'][$id])){
+if(!isset($_SESSION['news'][$id]) || $now > $_SESSION['news'][$id]->Expire){
 	//go to url
 	$request = 'http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q='.$subject. '&output=rss';
 	//get info from url and store
 	$response = file_get_contents($request);
 
-	//create object and store in an array
-	// $rssNews[] = new RssNews($id,$response,$now);
-	//store that array in Session cache
-	$_SESSION['news'][$id] = new RssNews($id,$response,$now);
+	//create object and store in Session array with same id as feed id
+	$_SESSION['news'][$id] = new RssNews($id,$response,$now,$expire);
 }
-
-
+	//This is either the persisting news var or newly created one.
 	$news = $_SESSION['news'][$id];
 
 	// echo "<pre>";
@@ -108,22 +111,25 @@ if(!isset($_SESSION['news'][$id])){
 	// echo "</pre>";
 	//
 	// echo "<pre>";
-	// var_dump($news);
+	// var_dump($news->Expire);
 	// echo "</pre>";
 	// die();
 
-
+//CODE SNIPPET FOR REFERENCE ONLY
 // $now = time(); // Checking the time now when home page starts.
 // if ($now > $_SESSION['news']['TimeCreated']+(15*60)) {
 // 					 session_destroy();
 // 					 echo "Your session has expired! <a href='http://localhost/somefolder/login.php'>Login here</a>";
-// 			 }
+// 			 } //CODE SNIPPET FOR REFERENCE ONLY - END
 
-
+//Echo the time that this feed was cashed at
 echo '<p class="right">News Cached at:'.date('h:i:s Y-m-d',$news->TimeCreated).'</p>';
 
+//Take the $news->FeedXML and make it a xml string to parse
 $xml = simplexml_load_string($news->FeedXML);
 print '<h3>' . $xml->channel->title . '</h3>';
+
+//Loop through each article and render it's data.
 foreach($xml->channel->item as $story)
 {
   echo '<a class="source" href="' . $story->link . '">' . $story->title . '</a><br />';
