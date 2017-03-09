@@ -16,10 +16,8 @@
 	const session = <?php if(!$_SESSION['news']){
 		echo 'false'; }
 		else { echo 'true'; } ?>;
-
-
-
 	</script>
 
 </head>
 <body>
+	

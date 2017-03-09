@@ -17,7 +17,7 @@
  include'includes/config.php';
 echo '
   <!-- This is the alert that prompts mobile devices to use landscape mode -->
-  <div id="dialog" title="Basic dialog">
+  <div id="dialog" title="Hey wait!">
   <p>This page is best <br>veiwed in landscape</p>
   <img src="images/icon-horizontal.png" alt="Best viewed in landscape view" />
 
