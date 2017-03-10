@@ -73,12 +73,21 @@ $id = $_GET['id'];
 
 //if session "news" with X id doesn't exist then create it.
 if(!isset($_SESSION['news'][$id]) || $now > $_SESSION['news'][$id]->Expire){
+<<<<<<< Updated upstream
     
     $sql = "
       SELECT FeedID, Subject, Description
       FROM Feed
       WHERE FeedID = ".$id.";
     ";//CLose sql query
+=======
+
+    $sql = '
+      SELECT FeedID, Subject, Description
+      FROM ' . PREFIX . 'Feed
+      WHERE FeedID = '.$id.';
+    ';//CLose sql query
+>>>>>>> Stashed changes
 
 
     $db = db_conn();              //Make db connection

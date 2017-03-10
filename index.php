@@ -25,8 +25,13 @@ echo '
 
   $sql = '
     SELECT c.CategoryID, f.Subject Feed_Name, c.Subject Category_Name, FeedID
+<<<<<<< Updated upstream
     FROM Feed f
     JOIN Category c
+=======
+    FROM ' . PREFIX . 'Feed f
+    JOIN ' . PREFIX . 'Category c
+>>>>>>> Stashed changes
     ON f.CategoryID = c.CategoryID
     ORDER BY c.Subject;
   ';//CLose sql query
