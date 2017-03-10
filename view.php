@@ -45,8 +45,8 @@ if(!isset($_SESSION['news'][$id]) || $now > $_SESSION['news'][$id]->Expire){
     $sql->closeCursor();          //Close the connection for safety
 
 
-    $subject = $results[0][1];
-    $subject = strtolower($subject);
+    $subject1 = $results[0][1];
+    $subject = strtolower($subject1);
     $subject = str_replace(' ', '+', $subject);
 
 	//go to url
@@ -55,9 +55,12 @@ if(!isset($_SESSION['news'][$id]) || $now > $_SESSION['news'][$id]->Expire){
 	$response = file_get_contents($request);
 
 	//create object and store in Session array with same id as feed id
-	$_SESSION['news'][$id] = new RssNews($id,$response);
+	$_SESSION['news'][$id] = new RssNews($id,$response,$subject1);
 
 }
+
+//This is either the persisting news var or newly created one.
+$news = $_SESSION['news'][$id];
 
     //THIS IS THE CORNER "NEWS" IMAGE THAT RETURNS YOU TO HOME PAGE.
     echo '<div class="banner" id="index">
@@ -67,9 +70,8 @@ if(!isset($_SESSION['news'][$id]) || $now > $_SESSION['news'][$id]->Expire){
       <div class="view">';
 
 
-    echo "<h2>" . $results[0]['Subject'] . "</h2>";
-	//This is either the persisting news var or newly created one.
-	$news = $_SESSION['news'][$id];
+    echo "<h2>" . $news->Subject . "</h2>";
+
 
 	// echo "<pre>";
 	// var_dump($_SESSION);
