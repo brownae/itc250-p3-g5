@@ -11,6 +11,28 @@ html {
 body {
   margin: 0;
 }
+
+.right {
+  float: right;
+  margin-right: 3%;
+}
+
+#dialog {
+  display: none;
+  text-align: center;
+}
+
+#dialog p {
+  font-size: 40px;
+}
+
+
+/*This makes widget button for pop-up bigger*/
+button.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  width: 50px;
+  height: 30px;
+}
+
 /*index page styles START---------------------------------------------*/
 *, *:before, *:after {
   box-sizing: inherit;
@@ -29,11 +51,23 @@ h1 {
   display: none;
 }
 
-h3 {
+h2 {
   text-transform: uppercase;
   font-family: 'Barrio', cursive;
   font-size: 2em;
   text-align: center;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-size: 2em;
+  text-align: center;
+  clear: right;
+}
+
+h4 {
+  text-transform: uppercase;
+  font-size: 2em;
 }
 
 ul {
@@ -52,7 +86,7 @@ li {
 }
 
 img.corner {
-  position: absolute;
+  position: fixed;
   width: 20%;
   z-index: 1;
   top: 0;
@@ -95,9 +129,9 @@ img.corner {
 }
 
 
-.panel1 { background-image:url(../images/tech-background.jpg); }
+.panel1 { background-image:url(../images/art-fin-dac.jpg); }
 .panel2 { background-image:url(../images/sports.png); }
-.panel3 { background-image:url(../images/art-fin-dac.jpg); }
+.panel3 { background-image:url(../images/tech-background.jpg); }
 .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
 .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
 
@@ -142,9 +176,22 @@ img.corner {
 
 /*LIST page styles END---------------------------------------------*/
 
+/*View page styles Start---------------------------------------------*/
+table {
+  vertical-align: top;
+  background-color: #0093D1;
+  width: 94%;
+  margin: auto;
+}
 
+a.source {
+  font-size: 1.5em;
+  margin: 0 3%;
+  background-color: #FC0D1B;
+  padding: 9px;
+}
 
-
+/*View page styles END---------------------------------------------*/
 .cta {
   color:white;
   text-decoration: none;
