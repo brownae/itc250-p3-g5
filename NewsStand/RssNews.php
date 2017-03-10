@@ -2,7 +2,7 @@
 
 class RssNews
 {
-    const CACHE_TIME = 3 * 60; //3 minutes
+    // const CACHE_TIME = 3 * 60; //3 minutes
     public $NewsID = 0;
     public $FeedXML = "";
     public $TimeCreated = 0;
@@ -23,6 +23,6 @@ class RssNews
 		$this->NewsID = (int)$NewsId;
 		$this->FeedXML = $FeedXml;
 		$this->TimeCreated = time();
-    $this->Expire = time() + CACHE_TIME ;
+    $this->Expire = time() + (3 * 60);
 	}#end RssNews() constructor
 }#end RssNews class
