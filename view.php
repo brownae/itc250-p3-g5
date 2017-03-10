@@ -20,8 +20,8 @@ class RssNews
 {
 	 public $NewsID = 0;
 	 public $FeedXML = "";
-	 public $TimeCreated = 0;
-	 public $Expire = 0;
+	 public $TimeCreated = time();
+	 public $Expire = time() + (2 * 60);
 
 	/**
 	 * Constructor for Answer class.
@@ -33,7 +33,7 @@ class RssNews
 	 * @return void
 	 * @todo none
 	 */
-    function __construct($NewsId,$FeedXml,$Time,$Expire)
+    function __construct($NewsId,$FeedXml)
 	{#constructor sets stage by adding data to an instance of the object
 		$this->NewsID = (int)$NewsId;
 		$this->FeedXML = $FeedXml;
@@ -52,8 +52,8 @@ class RssNews
 // die;
 
 
-$now = time();//current time
-$expire = time() + (2 * 60);
+// $now = time();//current time
+// $expire = time() + (2 * 60);
 
 
 $id = $_GET['id'];
@@ -101,7 +101,7 @@ if(!isset($_SESSION['news'][$id]) || $now > $_SESSION['news'][$id]->Expire){
 	$response = file_get_contents($request);
 
 	//create object and store in Session array with same id as feed id
-	$_SESSION['news'][$id] = new RssNews($id,$response,$now,$expire);
+	$_SESSION['news'][$id] = new RssNews($id,$response);
 }
 	//This is either the persisting news var or newly created one.
 	$news = $_SESSION['news'][$id];
